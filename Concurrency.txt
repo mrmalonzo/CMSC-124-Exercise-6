@@ -1,0 +1,64 @@
+Concurrency - refers to the idea of having many actors running independently
+
+	Process can be defined as functions and once it's done executing, it disappears.
+
+Creating a Process:
+	F = fun() -> 4 + 3 end.
+			-fun is a function that can be created on the fly
+
+	spawn(F) - create a process and runs this function
+
+	<0.81.0> - pid of the created process
+
+		processes do not return anything, it just perfrorms wahtever is inside the function
+
+Sending messages
+	-send message from one process to another
+
+	self() ! {hello, world}.
+		lhs is the pid, rhs is the one you want to send
+
+	self() - returns the pid of the current process
+
+		-every message sent to a rpcoess is kept in the process mailbox in the order that theya re received
+		-every time a message is read, it is taken out of the mailbox
+
+	flush(). - shortcut that outputs received messages
+
+Receiving Messages
+
+
+
+Distributed Computing
+	Each earlang VM, is called a node. A node can connect to other nodes on pc , host or other pcs.
+
+	EPMD - will act as name server that lets node register 
+
+		-node name = name@hostname 
+
+		long names
+			-can be given using the -name option and follows the name@hostname format
+
+			-can only communciate with long name
+
+		short names
+			can be given using -sname option and follows the name of the node without a host
+
+			-can only communicate with a short name
+
+Single Host
+
+	erl -sname kei
+
+	net_adm:ping('kei@Marlon-Predator') - to connect to kei
+
+	nodes() . - to see the nodes connected to you
+
+	Pass messages to a specific process of a node to {Name, Node}
+		Name - specific process na pagsesendan ng message
+		Node - at kung kaninong node yung process na yun
+
+
+User Input
+	String = io:get_line('Name please: ').
+		-get user input
